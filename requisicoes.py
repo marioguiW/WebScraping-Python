@@ -5,10 +5,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from time import sleep
 from bs4 import BeautifulSoup
+import pyautogui
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 options = Options();
 
-options.add_argument('window-size=1280,768')
+options.add_argument('window-size=1920,1080')
 
 servico = Service(ChromeDriverManager().install())
 navegador = webdriver.Chrome(service=servico, options=options)
@@ -32,47 +35,178 @@ buttonEnviar.click();
 
 sleep(4)
 
+i = 40;
 
-elemento_img = navegador.find_element(By.XPATH, '//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[2]/td[9]/small[2]/img')
-elemento_img1 = navegador.find_element(By.XPATH, '//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[3]/td[9]/small[2]/img')
+data = []
+diasAtivo = []
+visitasTotais = []
+visitasDiarias = []
+taxaConversao = []
+titulos = []
+valor = []
+url = []
+
+pyautogui.scroll(-10000)
+sleep(2)
+pyautogui.scroll(-10000)
+sleep(2)
+pyautogui.scroll(-10000)
+sleep(2)
+pyautogui.scroll(-10000)
+sleep(2)
+pyautogui.scroll(-10000)
+sleep(2)
+pyautogui.scroll(-10000)
+sleep(2)
+pyautogui.scroll(-10000)
+
+pyautogui.scroll(+10000)
+sleep(2)
+pyautogui.scroll(+10000)
+sleep(2)
+pyautogui.scroll(+10000)
+sleep(2)
+pyautogui.scroll(+10000)
+sleep(2)
+pyautogui.scroll(+10000)
+sleep(2)
+pyautogui.scroll(+10000)
+sleep(2)
+pyautogui.scroll(+10000)
 
 
 
-elemento_img1.click()
+while(i < 50):
+    print("teste", i)
+    xpath = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[5]/small'
+    vendas = navegador.find_element(By.XPATH, xpath).text
+    if vendas == 'De 51 a 100' or vendas == 'De 26 a 50' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500':
+        print("encontrou")
+        xpathImg = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[9]/small[2]/img'
+        xpathUrl = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[9]/small[4]/a'
+        
+        
+        elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
+        elemento_img = navegador.find_element(By.XPATH, xpathImg)
+        elemento_img.click()
+        print("clicou")
+        sleep(4)
+        elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
+        elemento_info.click()
+        sleep(2)
+
+        page_content = navegador.page_source
+        site = BeautifulSoup(page_content, 'html.parser')
+
+        titulo = site.find('div', attrs={'class': 'col col-10'})
+
+        textoCompleto = titulo.get_text(strip=True)
+        parte_desejada = textoCompleto.split('(')[0].strip()
+
+        paragrafoDescricao = site.find('p' ,attrs={'style' :'font-size: 13px;'})
+
+        infosImportantes = paragrafoDescricao.find_all('strong')
+
+        titulos.append(parte_desejada);
+        valor.append(site.find('span', attrs={'style': 'color:white;'}))
+        data.append(infosImportantes[0])
+        diasAtivo.append(infosImportantes[1])
+        visitasTotais.append(infosImportantes[2])
+        visitasDiarias.append(infosImportantes[3])
+        taxaConversao.append(infosImportantes[4].find('span', attrs={"color" :"green"}))
+        url.append(elementoUrl)
+
+        pyautogui.press('esc')
+          # scroll down 10 "clicks"
+
+        i = i + 1;
+    else:
+        sleep(2)
+        pyautogui.scroll(-80)
+        print("nao encontro")
+        i = i+ 1;
+print("fim")
+
+j = 1;
+m = 3
+i = 1
+while(i < 100):
+    k = m;
+    while(k < 52):
+        print("teste", i)
+        xpath = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[5]/small'
+        vendas = navegador.find_element(By.XPATH, xpath).text
+        print(vendas)
+        if vendas == 'De 51 a 100' or vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500':
+            print("encontrou")
+            xpathImg = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[2]/img'
+            xpathUrl = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[4]/a/img' 
+            
+            elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
+            elemento_img = navegador.find_element(By.XPATH, xpathImg)
+            elemento_img.click()
+            print("clicou")
+            sleep(4)
+            elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
+            elemento_info.click()
+            sleep(2)
+            
+            page_content = navegador.page_source
+            site = BeautifulSoup(page_content, 'html.parser')
+
+            titulo = site.find('div', attrs={'class': 'col col-10'})
+
+            textoCompleto = titulo.get_text(strip=True)
+            parte_desejada = textoCompleto.split('(')[0].strip()
+
+            paragrafoDescricao = site.find('p' ,attrs={'style' :'font-size: 13px;'})
+
+            infosImportantes = paragrafoDescricao.find_all('strong')
+
+            titulos.append(parte_desejada);
+            valor.append(site.find('span', attrs={'style': 'color:white;'}))
+            data.append(infosImportantes[0])
+            diasAtivo.append(infosImportantes[1])
+            visitasTotais.append(infosImportantes[2])
+            visitasDiarias.append(infosImportantes[3])
+            taxaConversao.append(infosImportantes[4].find('span', attrs={"color" :"green"}))
+            url.append(elementoUrl)
+
+            pyautogui.press('esc')
+            # scroll down 10 "clicks"
+
+            i = i + 1;
+            k = k + 1
+        else:
+            sleep(2)
+            pyautogui.scroll(-80)
+            print("nao encontro")
+            i = i+ 1;
+            k = k + 1;
+    j = j + 1
+    m = m + 1
+print("fim")
+
 
 sleep(3)
 
-elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
 
-elemento_info.click()
 
-sleep(2)
+i = 2;
 
-page_content = navegador.page_source
-site = BeautifulSoup(page_content, 'html.parser')
-
-titulo = site.find('div', attrs={'class': 'col col-10'})
-valor = site.find('span', attrs={'style': 'color:white;'})
-
-textoCompleto = titulo.get_text(strip=True)
-parte_desejada = textoCompleto.split('(')[0].strip()
-paragrafoDescricao = site.find('p' ,attrs={'style' :'font-size: 13px;'})
-infosImportantes = paragrafoDescricao.find_all('strong')
-
-data = infosImportantes[0]
-diasAtivo = infosImportantes[1]
-visitasTotais = infosImportantes[2]
-visitasDiarias = infosImportantes[3]
-taxaConversao = infosImportantes[4].find('span', attrs={"color" :"green"})
-
-print("titulo : ",parte_desejada )
-print("preço : ", valor.decode_contents())
-print("data : ", data.decode_contents())
-print("dias ativos: ", diasAtivo.decode_contents())
-print("total de visitas : ", visitasTotais.decode_contents())
-print("visitas diarias : ", visitasDiarias.decode_contents())
-print("taxa de conversão : ", taxaConversao.decode_contents() + '% ')
-
+while(i < 150):
+    print("")
+    print("---------------------------------------------")
+    print("titulo : ",titulos[i])
+    print("preço : ", valor[i].decode_contents())
+    print("data : ", data[i].decode_contents())
+    print("dias ativos: ", diasAtivo[i].decode_contents())
+    print("total de visitas : ", visitasTotais[i].decode_contents())
+    print("visitas diarias : ", visitasDiarias[i].decode_contents())
+    print("taxa de conversão : ", taxaConversao[i].decode_contents() + '% ')
+    print("url : ", url[i])
+    print("---------------------------------------------")
+    i = i+1
 
 
 input("aa")
