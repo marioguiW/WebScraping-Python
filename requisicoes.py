@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 options = Options();
 
-options.add_argument('window-size=1920,1080')
+options.add_argument('window-size=1280,768')
 
 servico = Service(ChromeDriverManager().install())
 navegador = webdriver.Chrome(service=servico, options=options)
@@ -35,8 +35,9 @@ buttonEnviar.click();
 
 sleep(4)
 
-i = 40;
+i = 2;
 
+idAnuncios = []
 data = []
 diasAtivo = []
 visitasTotais = []
@@ -84,8 +85,12 @@ while(i < 50):
         print("encontrou")
         xpathImg = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[9]/small[2]/img'
         xpathUrl = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[9]/small[4]/a'
+        xpathTitulo = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[2]/small'
+        xpathId = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[1]/small'
         
-        
+        titulo = navegador.find_element(By.XPATH, xpathTitulo)
+        idAnuncio = navegador.find_element(By.XPATH, xpathId)
+
         elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
         elemento_img = navegador.find_element(By.XPATH, xpathImg)
         elemento_img.click()
@@ -95,19 +100,18 @@ while(i < 50):
         elemento_info.click()
         sleep(2)
 
+
         page_content = navegador.page_source
         site = BeautifulSoup(page_content, 'html.parser')
-
-        titulo = site.find('div', attrs={'class': 'col col-10'})
-
-        textoCompleto = titulo.get_text(strip=True)
-        parte_desejada = textoCompleto.split('(')[0].strip()
+       
 
         paragrafoDescricao = site.find('p' ,attrs={'style' :'font-size: 13px;'})
 
         infosImportantes = paragrafoDescricao.find_all('strong')
 
-        titulos.append(parte_desejada);
+
+        idAnuncios.append(idAnuncio.text)
+        titulos.append(titulo.text);
         valor.append(site.find('span', attrs={'style': 'color:white;'}))
         data.append(infosImportantes[0])
         diasAtivo.append(infosImportantes[1])
@@ -130,17 +134,22 @@ print("fim")
 j = 1;
 m = 3
 i = 1
-while(i < 100):
+while(i < 2):
     k = m;
     while(k < 52):
         print("teste", i)
         xpath = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[5]/small'
         vendas = navegador.find_element(By.XPATH, xpath).text
         print(vendas)
-        if vendas == 'De 51 a 100' or vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500':
+        if vendas == 'De 51 a 100' or vendas == 'De 26 a 50' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500':
             print("encontrou")
             xpathImg = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[2]/img'
-            xpathUrl = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[4]/a/img' 
+            xpathUrl = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[4]/a'
+            xpathTitulo = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[2]/small'
+            xpathId = f'//*[@id="analiticoFindPosAdViewRetorno"]/table[{j}]/tbody/tr[{i}]/td[1]/small'
+        
+            titulo = navegador.find_element(By.XPATH, xpathTitulo) 
+            idAnuncio = navegador.find_element(By.XPATH, xpathId)
             
             elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
             elemento_img = navegador.find_element(By.XPATH, xpathImg)
@@ -150,20 +159,21 @@ while(i < 100):
             elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
             elemento_info.click()
             sleep(2)
+
             
             page_content = navegador.page_source
             site = BeautifulSoup(page_content, 'html.parser')
 
-            titulo = site.find('div', attrs={'class': 'col col-10'})
-
-            textoCompleto = titulo.get_text(strip=True)
-            parte_desejada = textoCompleto.split('(')[0].strip()
 
             paragrafoDescricao = site.find('p' ,attrs={'style' :'font-size: 13px;'})
 
             infosImportantes = paragrafoDescricao.find_all('strong')
+            
+            print("----------")
+            print(elementoUrl)
+            print("----------")
 
-            titulos.append(parte_desejada);
+            titulos.append(titulo.text);
             valor.append(site.find('span', attrs={'style': 'color:white;'}))
             data.append(infosImportantes[0])
             diasAtivo.append(infosImportantes[1])
@@ -192,11 +202,12 @@ sleep(3)
 
 
 
-i = 2;
+i = 0;
 
 while(i < 150):
     print("")
     print("---------------------------------------------")
+    print("id : ", idAnuncios[i])
     print("titulo : ",titulos[i])
     print("preço : ", valor[i].decode_contents())
     print("data : ", data[i].decode_contents())
