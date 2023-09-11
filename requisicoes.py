@@ -29,7 +29,7 @@ inputSenha.submit();
 sleep(3)
 
 inputTagProduto = navegador.find_element(By.NAME, "textoPesquisa");
-inputTagProduto.send_keys("Retrovisor S10")
+inputTagProduto.send_keys("Faaftech")
 buttonEnviar = navegador.find_element(By.XPATH, "//*[@id='content']/div/div/div/div/div[1]/div/div/button[1]")
 buttonEnviar.click();
 
@@ -63,7 +63,148 @@ sleep(0.5)
 pyautogui.scroll(-10000)
 sleep(0.5)
 pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
 
+
+
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
+sleep(0.5)
+pyautogui.scroll(+10000)
 pyautogui.scroll(+10000)
 sleep(0.5)
 pyautogui.scroll(+10000)
@@ -84,7 +225,7 @@ while(i < 50):
     print("teste", i)
     xpath = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[5]/small'
     vendas = navegador.find_element(By.XPATH, xpath).text
-    if vendas == 'De 51 a 100' or vendas == 'De 26 a 50' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500':
+    if vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 5 a 25' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500' or vendas == 'De 501 a 5000':
         print("encontrou")
         xpathImg = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[9]/small[2]/img'
         xpathUrl = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[9]/small[4]/a'
@@ -98,7 +239,8 @@ while(i < 50):
         elemento_img = navegador.find_element(By.XPATH, xpathImg)
         elemento_img.click()
         print("clicou")
-        sleep(4)
+        sleep(5)
+        sleep(0.7)
         elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
         elemento_info.click()
         sleep(2)
@@ -112,20 +254,29 @@ while(i < 50):
         paragrafoDescricao = site.find('p' ,attrs={'style' :'font-size: 13px;'})
 
         infosImportantes = paragrafoDescricao.find_all('strong')
+        print(infosImportantes)
 
-        porcentagem = infosImportantes[4].find('span', attrs={"color" :"green"}).decode_contents();
+        if len(infosImportantes) < 4:
+            pyautogui.press('esc');
+            
+        else:
+            porcentagem = infosImportantes[4].find('span', attrs={"color" :"green"});
 
-        idAnuncios.append(idAnuncio.text)
-        titulos.append(titulo.text);
-        valor.append(site.find('span', attrs={'style': 'color:white;'}))
-        data.append(infosImportantes[0])
-        diasAtivo.append(infosImportantes[1])
-        visitasTotais.append(infosImportantes[2])
-        visitasDiarias.append(infosImportantes[3])
-        taxaConversao.append(porcentagem)
-        url.append(elementoUrl)
+            if porcentagem == None:
+                    porcentagem = infosImportantes[4].find('span', attrs={"color" :"red"});
 
-        pyautogui.press('esc')
+            idAnuncios.append(idAnuncio.text)
+            titulos.append(titulo.text);
+            valor.append(site.find('span', attrs={'style': 'color:white;'}))
+            data.append(infosImportantes[0])
+            diasAtivo.append(infosImportantes[1])
+            visitasTotais.append(infosImportantes[2])
+            visitasDiarias.append(infosImportantes[3])
+            taxaConversao.append(porcentagem.decode_contents())
+            url.append(elementoUrl)
+
+            pyautogui.press('esc')
+            
           # scroll down 10 "clicks"
 
         i = i + 1;
@@ -144,7 +295,7 @@ while(i < 140):
         xpath = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[5]/small'
         vendas = navegador.find_element(By.XPATH, xpath).text
         print(vendas)
-        if vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500' or vendas == 'De 501 a 1000':
+        if vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 5 a 25' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500' or vendas == 'De 501 a 5000':
             print("encontrou")
             xpathImg = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[2]/img'
             xpathUrl = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[4]/a'
@@ -157,7 +308,8 @@ while(i < 140):
             elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
             elemento_img = navegador.find_element(By.XPATH, xpathImg)
             elemento_img.click()
-            sleep(4)
+            sleep(5)
+            sleep(0.7)
             elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
             elemento_info.click()
             sleep(2)
@@ -171,30 +323,31 @@ while(i < 140):
 
             infosImportantes = paragrafoDescricao.find_all('strong')
 
-            porcentagem = infosImportantes[4].find('span', attrs={"color" :"green"});
-            print(porcentagem)
+            if len(infosImportantes) < 4:
+                pyautogui.press('esc');
+            else:
+                porcentagem = infosImportantes[4].find('span', attrs={"color" :"green"});
 
-            if porcentagem == None:
-                porcentagem = infosImportantes[4].find('span', attrs={"color" :"red"});
+                if porcentagem == None:
+                        porcentagem = infosImportantes[4].find('span', attrs={"color" :"red"});
+
+                idAnuncios.append(idAnuncio.text)
+                titulos.append(titulo.text);
+                valor.append(site.find('span', attrs={'style': 'color:white;'}))
+                data.append(infosImportantes[0])
+                diasAtivo.append(infosImportantes[1])
+                visitasTotais.append(infosImportantes[2])
+                visitasDiarias.append(infosImportantes[3])
+                taxaConversao.append(porcentagem.decode_contents())
+                url.append(elementoUrl)
+
+                pyautogui.press('esc')
 
             
             print("----------")
             print(elementoUrl)
             print("----------")
 
-
-            idAnuncios.append(idAnuncio.text)
-            titulos.append(titulo.text);
-            valor.append(site.find('span', attrs={'style': 'color:white;'}))
-            data.append(infosImportantes[0])
-            diasAtivo.append(infosImportantes[1])
-            visitasTotais.append(infosImportantes[2])
-            visitasDiarias.append(infosImportantes[3])
-            taxaConversao.append(porcentagem.decode_contents())
-            url.append(elementoUrl)
-
-            pyautogui.press('esc')
-            # scroll down 10 "clicks"
 
             i = i + 1;
             k = k + 1
@@ -250,7 +403,7 @@ for row_num, (id_anuncio, titulo, preco, data, dias_ativos, total_visitas, visit
         cell.value = value
 
 # Salve o arquivo Excel
-workbook.save("dados.xlsx")
+workbook.save("faaftech.xlsx")
 
 # Feche o arquivo Excel
 workbook.close()
