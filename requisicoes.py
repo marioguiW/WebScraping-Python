@@ -234,6 +234,7 @@ while(i < 50):
         
         titulo = navegador.find_element(By.XPATH, xpathTitulo)
         idAnuncio = navegador.find_element(By.XPATH, xpathId)
+        print("teste ", idAnuncio.text)
 
         elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
         elemento_img = navegador.find_element(By.XPATH, xpathImg)
@@ -291,7 +292,6 @@ i = 1
 while(i < 140):
     k = m;
     while(k < 52):
-        print("teste", i)
         xpath = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[5]/small'
         vendas = navegador.find_element(By.XPATH, xpath).text
         print(vendas)
@@ -304,6 +304,7 @@ while(i < 140):
         
             titulo = navegador.find_element(By.XPATH, xpathTitulo) 
             idAnuncio = navegador.find_element(By.XPATH, xpathId)
+            print("teste ", idAnuncio.text)
             
             elementoUrl = navegador.find_element(By.XPATH, xpathUrl).get_attribute('href')
             elemento_img = navegador.find_element(By.XPATH, xpathImg)
