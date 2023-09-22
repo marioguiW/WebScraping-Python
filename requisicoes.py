@@ -29,14 +29,13 @@ inputSenha.submit();
 sleep(3)
 
 inputTagProduto = navegador.find_element(By.NAME, "textoPesquisa");
-inputTagProduto.send_keys("Faaftech")
+inputTagProduto.send_keys("Brinquedo Importado")
 buttonEnviar = navegador.find_element(By.XPATH, "//*[@id='content']/div/div/div/div/div[1]/div/div/button[1]")
 buttonEnviar.click();
 
 
 sleep(4)
 
-i = 2;
 
 idAnuncios = []
 data = []
@@ -176,6 +175,12 @@ pyautogui.scroll(-10000)
 sleep(0.5)
 pyautogui.scroll(-10000)
 sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
+pyautogui.scroll(-10000)
+sleep(0.5)
 
 
 
@@ -221,8 +226,10 @@ pyautogui.scroll(+10000)
 
 
 
+i = 2;
 while(i < 50):
     print("teste", i)
+    sleep(0.7);
     xpath = f'//*[@id="analiticoFindPosAdViewRetorno"]/table/tbody/tr[{i}]/td[5]/small'
     vendas = navegador.find_element(By.XPATH, xpath).text
     if vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 5 a 25' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500' or vendas == 'De 501 a 5000':
@@ -241,6 +248,10 @@ while(i < 50):
         elemento_img.click()
         print("clicou")
         sleep(5)
+        sleep(0.7)
+        sleep(0.7)
+        sleep(0.7)
+        sleep(0.7)
         sleep(0.7)
         elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
         elemento_info.click()
@@ -286,17 +297,33 @@ while(i < 50):
         i = i+ 1;
 print("fim")
 
-j = 1;
+j = 1
 m = 3
 i = 1
-while(i < 140):
+while(j < 20):
     k = m;
+
+    if idAnuncio.text == '949':
+        break;
+
     while(k < 52):
+        sleep(0.5)
+        sleep(0.5)
+        sleep(0.5)
         xpath = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[5]/small'
         vendas = navegador.find_element(By.XPATH, xpath).text
-        print(vendas)
+
+        xpathId = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[1]/small'
+        idAnuncio = navegador.find_element(By.XPATH, xpathId);
+
+        print("id: ", idAnuncio.text);
+
+        if idAnuncio.text == '949':
+             break;
+
         if vendas == 'De 26 a 50' or vendas == 'De 51 a 100' or vendas == 'De 5 a 25' or vendas == 'De 101 a 150' or vendas == 'De 151 a 250' or vendas == 'De 251 a 500' or vendas == 'De 501 a 5000':
             print("encontrou")
+            print(vendas)
             xpathImg = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[2]/img'
             xpathUrl = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[9]/small[4]/a'
             xpathTitulo = f'//*[@id="lazyloading"]/table[{j}]/tbody/tr[{k}]/td[2]/small'
@@ -311,10 +338,31 @@ while(i < 140):
             elemento_img.click()
             sleep(5)
             sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            sleep(0.7)
+            
+            idNumero = int(idAnuncio.text);
+            if(idNumero > 200):
+                 sleep(0.7);
+            if(idNumero > 400):
+                 sleep(0.7);
+            if(idNumero > 600):
+                 sleep(0.7);
+            if(idNumero > 800):
+                 sleep(0.7);
+            
+
             elemento_info = navegador.find_element(By.XPATH, '//*[@id="btnResumo"]');
             elemento_info.click()
             sleep(2)
-
             
             page_content = navegador.page_source
             site = BeautifulSoup(page_content, 'html.parser')
@@ -358,6 +406,8 @@ while(i < 140):
             k = k + 1;
     j = j + 1
     m = m + 1
+
+
 print("fim")
 
 
@@ -367,20 +417,6 @@ sleep(3)
 
 i = 0;
 
-# while(i < 150):
-#     print("")
-#     print("---------------------------------------------")
-#     print("id : ", idAnuncios[i])
-#     print("titulo : ",titulos[i])
-#     print("preço : ", valor[i].decode_contents())
-#     print("data : ", data[i].decode_contents())
-#     print("dias ativos: ", diasAtivo[i].decode_contents())
-#     print("total de visitas : ", visitasTotais[i].decode_contents())
-#     print("visitas diarias : ", visitasDiarias[i].decode_contents())
-#     print("taxa de conversão : ", taxaConversao[i] + '% ')
-#     print("url : ", url[i])
-#     print("---------------------------------------------")
-#     i = i+1
 
 workbook = openpyxl.Workbook()
 sheet = workbook.active
@@ -395,7 +431,7 @@ for col_num, header in enumerate(headers, 1):
 for row_num, (id_anuncio, titulo, preco, data, dias_ativos, total_visitas, visitas_diarias, taxa_conversao, url) in enumerate(
     zip(idAnuncios, titulos, [valor[i].decode_contents() for i in range(len(valor))], [data[i].decode_contents() for i in range(len(data))],
         [diasAtivo[i].decode_contents() for i in range(len(diasAtivo))], [visitasTotais[i].decode_contents() for i in range(len(visitasTotais))],
-        [visitasDiarias[i].decode_contents() for i in range(len(visitasDiarias))], [taxaConversao[i] + '%' for i in range(len(taxaConversao))], url), start=1):
+        [visitasDiarias[i].decode_contents() for i in range(len(visitasDiarias))], [taxaConversao[i] for i in range(len(taxaConversao))], url), start=1):
 
     data_row = [id_anuncio, titulo, preco, data, dias_ativos, total_visitas, visitas_diarias, taxa_conversao, url]
 
@@ -404,7 +440,7 @@ for row_num, (id_anuncio, titulo, preco, data, dias_ativos, total_visitas, visit
         cell.value = value
 
 # Salve o arquivo Excel
-workbook.save("faaftech.xlsx")
+workbook.save("Brinquedo Importado.xlsx")
 
 # Feche o arquivo Excel
 workbook.close()
