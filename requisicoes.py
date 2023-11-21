@@ -22,8 +22,8 @@ navegador.get("https://app.melibox.com.br/advProductPosition")
 inputEmail = navegador.find_element(By.NAME, "email");
 inputSenha = navegador.find_element(By.NAME, "password");
 
-inputEmail.send_keys("Nelson.wilhelms@gmail.com");
-inputSenha.send_keys("caraio123");
+inputEmail.send_keys("");
+inputSenha.send_keys("");
 inputSenha.submit();
 
 sleep(3)
